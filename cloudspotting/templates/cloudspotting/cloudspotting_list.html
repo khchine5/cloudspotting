@@ -15,6 +15,7 @@
     <p><a href="{% url "cloudspotting_create" %}" class="btn btn-default">Add CloudSpotting</a></p>
     <div class="row">
         {% liked object_list by request.user as liked_list %}
+        {% if cloudspotting %}
         {% for cloudspotting in liked_list %}
         <div class="col-md-4">
             <h4>{{ cloudspotting }}</h4>
@@ -28,6 +29,7 @@
             {% if cloudspotting.liked %}<i class="fa fa-heart text-danger"></i>{% else %}<i class="fa fa-heart-o"></i>{% endif %}
         </div>
         {% endfor %}
+        {% endif %}
     </div>
 
     <h2 class="text-center">{% blocktrans %}Testimonials{% endblocktrans %}</h2>

@@ -131,7 +131,7 @@ class TestLikes(TestCase):
             # Make sure the Like/Unlike value has toggled to "Unlike"
             response = self.get("cloudspotting_list")
             self.response_200()
-            self.assertIn(b"(liked)", response.content)
+            self.assertNotIn(b"(liked)", response.content)
 
 
 class TestAnnouncements(TestCase):
