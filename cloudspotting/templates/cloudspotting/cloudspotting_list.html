@@ -15,7 +15,7 @@
     <p><a href="{% url "cloudspotting_create" %}" class="btn btn-default">Add CloudSpotting</a></p>
     <div class="row">
         {% liked object_list by request.user as liked_list %}
-        {% if cloudspotting %}
+        {% if liked_list %}
         {% for cloudspotting in liked_list %}
         <div class="col-md-4">
             <h4>{{ cloudspotting }}</h4>
