@@ -20,9 +20,11 @@
             <h4>{{ cloudspotting }}</h4>
             <div class="media-panel">
                 <a href="{% url "cloudspotting_detail" cloudspotting.pk %}">
-                    {% with cloudspotting.image_set.image_data.primaryImage|default:cloudspotting.image_set.image_data.images as image %}
-                        <img class="{% if image.is_primary %}primary{% endif %}" style="width:100%" src="{{ image.medium_thumbnail }}" />
-                    {% endwith %}
+                    {% if cloudspotting.image_set.image_data.primaryImage or cloudspotting.image_set.image_data.images|length >= 1 %}
+                        {% with cloudspotting.image_set.image_data.primaryImage|default:cloudspotting.image_set.image_data.images.0 as image %}
+                            <img class="{% if image.is_primary %}primary{% endif %}" style="width:100%" src="{{ image.medium_thumbnail }}" />
+                        {% endwith %}
+                    {% endif %}
                 </a>
             </div>
             {% if cloudspotting.liked %}<i class="fa fa-heart text-danger"></i>{% else %}<i class="fa fa-heart-o"></i>{% endif %}
